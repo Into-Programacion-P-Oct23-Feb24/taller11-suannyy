@@ -5,10 +5,9 @@
  */
 package problemas;
 
-/**
- *
- * @author reroes
- */
+import java.util.Locale;
+import java.util.Scanner;
+ 
 public class Problema3 {
 
     /**
@@ -16,28 +15,49 @@ public class Problema3 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        double nota1 = 10;
-        double nota2 = 5;
-        double nota3 = 8;
-        double nota4 = 7;
-        obtenerPromedio(nota1, nota2, nota3, nota4);
-
+        Scanner entrada = new Scanner(System.in);
+        entrada.useLocale(Locale.US);
+        
+        double n1, n2, n3, n4;
+        String calificacion;
+        System.out.println("Ingrese nota 1");
+        n1 = entrada.nextDouble();
+        System.out.println("Ingrese nota 2");
+        n2 = entrada.nextDouble();
+        System.out.println("Ingrese nota 3");
+        n3 = entrada.nextDouble();
+        System.out.println("Ingrese nota 4");
+        n4 = entrada.nextDouble();
+        calificacion = obtenerPromedioCualitativo(n1, n2, n3, n4);
+        System.out.printf("El promedio de las notas:%.2f, %.2f, %.2f,"
+                + " %.2f es %s\n",
+                n1,
+                n2,
+                n3,
+                n4,
+                calificacion);
     }
 
-    public static String obtenerPromedio(double n1, double n2, double n3, double n4) {
-        String cadena;
-        double promedio;
-        promedio = (n1 + n2 + n3 + n4);
-        if (promedio >= 0 && promedio <= 5) {
-            cadena = "El promedio es Regular";
+    public static String obtenerPromedioCualitativo(double a, double b, double c, double d) {
+        String calificacion = "";
+        double promedio = (a + b + c + d) / 4;
+        if ((promedio >= 0) && (promedio <= 5)) {
+            calificacion = "Regular";
         } else {
-            if (promedio >= 5.1 && promedio <= 8) {
-                cadena = "El promedio es Bueno";
+            if ((promedio >= 5.1) && (promedio <= 8)) {
+                calificacion = "Bueno";
             } else {
-                if (promedio >= 8.1 && promedio <= 9) {
-                    cadena = "El promedio es Muy bueno";
+                if ((promedio >= 8.1) && (promedio <= 9)) {
+                    calificacion = "Muy Bueno";
                 } else {
-                    if (promedio >= 9.1 && promedio <= 10) {
-                        cadena = "El promedio es Sobresaliente";
+                    if ((promedio >= 9.1) && (promedio <= 10)) {
+                        calificacion = "Sobresaliente";
+                    } else {
+                        calificacion = "Error";
                     }
                 }
+            }
+        }
+        return calificacion;
+    }
+}
